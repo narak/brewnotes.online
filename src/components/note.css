@@ -1,0 +1,36 @@
+.container {
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    background: #fff;
+    vertical-align: top;
+    margin: 10px 10px;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 0 8px #888;
+    cursor: pointer;
+    transition: background 200ms ease;
+}
+
+.container:hover {
+    background: #fbf1d5;
+}
+
+.container:active {
+    background: #FCE09C;
+}
+
+.info {
+    font-size: .8rem;
+}
+
+.key {
+    display: inline-block;
+}
+
+.value {
+    float: right;
+    display: inline-block;
+    font-weight: 600;
+    font-size: .8rem;
+}

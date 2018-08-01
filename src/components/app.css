@@ -1,0 +1,40 @@
+.logo {
+    margin: 0;
+    color: #fcfcfc;
+    font-family: 'Pattaya', cursive;
+    position: relative;
+}
+
+.header {
+    z-index: 1;
+    position: fixed;
+    background: #070708;
+    color: #fcfcfc;
+    display: inline-block;
+    padding: 20px 33px 20px 26px;
+    border-radius: 0 0 30px 0;
+    box-shadow: 5px 3px 30px hsl(0, 0%, 64%);
+}
+
+.triangle {
+    position: absolute;
+    z-index: 0;
+    background: #f6f6f6;
+    border-radius: 10px;
+}
+
+.userTriangle {
+    width: 150px;
+    height: 150px;
+    transform: rotate(54deg);
+    top: -10px;
+    right: -123px;
+}
+
+.pageTriangle {
+    width: 420px;
+    height: 420px;
+    transform: rotate(54deg);
+    top: 140px;
+    left: -230px;
+}
