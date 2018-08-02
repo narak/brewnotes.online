@@ -1,36 +1,63 @@
+:import('../colors.css') {
+    color1: color1;
+    color2: color2;
+    color2-shadow: color2-shadow;
+    color3: color3;
+    color5: color5;
+    color6: color6;
+    color6-lighter: color6-lighter;
+}
+
 .container {
+    position: relative;
     display: inline-block;
     width: 200px;
     height: 200px;
-    background: #fff;
+    background: color1;
     vertical-align: top;
     margin: 10px 10px;
-    padding: 10px;
+    padding: 15px 12px 10px;
+    border: 1px solid hsl(0, 0%, 95%);
     border-radius: 4px;
-    box-shadow: 0 0 8px #888;
+    box-shadow: 5px 3px 30px hsl(0, 0%, 94%);
     cursor: pointer;
     transition: background 200ms ease;
 }
 
 .container:hover {
-    background: #fbf1d5;
+    background: color6;
 }
 
 .container:active {
-    background: #FCE09C;
+    background: color5;
+}
+
+.title {
+    margin: 0 0 5px;
 }
 
 .info {
-    font-size: .8rem;
+    font-size: 0.7rem;
 }
 
-.key {
+.style {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    color: color1;
+    background: color2;
+    box-shadow: 0 0 4px color2-shadow;
     display: inline-block;
+    padding: 2px 5px;
+    border-radius: 2px;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
 }
 
-.value {
-    float: right;
-    display: inline-block;
-    font-weight: 600;
-    font-size: .8rem;
+.footer {
+    font-size: 0.7rem;
+    position: absolute;
+    bottom: 6px;
+    left: 10px;
+    color: color2;
 }

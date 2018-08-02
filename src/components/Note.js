@@ -2,8 +2,6 @@ import styles from './note.css';
 
 import React from 'react';
 
-console.log(styles);
-
 export default class Note extends React.PureComponent {
     render() {
         const { note } = this.props;
@@ -11,14 +9,17 @@ export default class Note extends React.PureComponent {
 
         return (
             <div className={styles.container}>
+                <div className={styles.style}>{note.style}</div>
                 <div className={styles.title}>
                     <strong>{note.name}</strong>
                 </div>
                 <div className={styles.info}>
-                    <div className={styles.key}>Style:</div>
-                    <div className={styles.value}>{note.style}</div><br />
-                    <div className={styles.key}>Brewed On:</div>
-                    <div className={styles.value}>{new Date(createdOn).toLocaleDateString()}</div>
+                    Currently <strong>{note.stage}</strong>, which is done in{' '}
+                    <em>{note.stage_ends_on}</em>.<br />
+                    Beer is ready in <em>{note.completes_on}</em>.<br />
+                </div>
+                <div className={styles.footer}>
+                    Brewed On: {new Date(createdOn).toLocaleDateString()}
                 </div>
             </div>
         );

@@ -2,6 +2,7 @@
     position: fixed;
     top: 26px;
     left: 220px;
+    z-index: 2;
 }
 
 .searchInput {
@@ -9,6 +10,7 @@
     border-radius: 4px;
     background: #fff;
     border: none;
+    font-family: 'Open Sans', sans-serif;
     font-weight: 300;
     font-size: 0.8rem;
     padding: 7px 10px;
