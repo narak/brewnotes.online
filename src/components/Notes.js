@@ -14,6 +14,7 @@ export default class Notes extends React.PureComponent {
                     <strong>{notesList.length}</strong> brews
                 </div>
                 <div className={styles.list}>
+                    <button type="button" className={styles.addNote}>New Note</button>
                     {notesList.map((note, i) => (
                         <Note note={note} key={i} />
                     ))}

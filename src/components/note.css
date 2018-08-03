@@ -6,6 +6,8 @@
     color5: color5;
     color6: color6;
     color6-lighter: color6-lighter;
+    containerBorder: containerBorder;
+    containerShadow: containerShadow;
 }
 
 .container {
@@ -15,11 +17,11 @@
     height: 200px;
     background: color1;
     vertical-align: top;
-    margin: 10px 10px;
+    margin: 0 20px 20px 10px;
     padding: 15px 12px 10px;
-    border: 1px solid hsl(0, 0%, 95%);
+    border: 1px solid containerBorder;
     border-radius: 4px;
-    box-shadow: 5px 3px 30px hsl(0, 0%, 94%);
+    box-shadow: 5px 3px 30px containerShadow;
     cursor: pointer;
     transition: background 200ms ease;
 }

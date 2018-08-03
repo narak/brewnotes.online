@@ -3,8 +3,11 @@
     color2: #B8C2D0;
     color2-shadow: hsl(215, 20%, 70%);
     color3: #070708;
+    color3-shadow: #070708;
     color4: #5B5959;
     color5: #DC852A;
     color6-lighter: hsl(43, 100%, 88%);
     color6: #FCE09C;
+    containerBorder: hsl(0, 0%, 94%);
+    containerShadow: hsl(0, 0%, 94%);
 }
