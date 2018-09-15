@@ -9,13 +9,15 @@ class App extends React.PureComponent {
     render() {
         return (
             <Fragment>
-                <header className={styles.header}>
-                    <h1 className={styles.logo}>BrewNotes</h1>
-                    for narak
-                </header>
                 <div className={cns(styles.triangle, styles.userTriangle)} />
                 <div className={cns(styles.triangle, styles.pageTriangle)} />
-                <Notes />
+                <div className={styles.content}>
+                    <header className={styles.header}>
+                        <h1 className={styles.logo}>BrewNotes</h1>
+                        for narak
+                    </header>
+                    <Notes />
+                </div>
             </Fragment>
         );
     }

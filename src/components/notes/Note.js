@@ -22,14 +22,18 @@ export default class Note extends React.PureComponent {
 
         const cls = cns(styles.note, { [styles.isSelected]: isSelected });
 
-        const left = (row * Grid.WIDTH) + 'px';
-        const top = (col * Grid.HEIGHT) + 'px';
+        const left = (col * (Grid.WIDTH + Grid.PADDING_RIGHT)) + 'px';
+        const top = (row * (Grid.HEIGHT + Grid.PADDING_BOTTOM)) + 'px';
 
         return (
-            <div className={cls} style={{left, top}}>
+            <div className={cls} style={{left, top}} onClick={this.onClick}>
                 <div>{note.get('name')}</div>
                 {attrs}
             </div>
         );
+    }
+
+    onClick = () => {
+        this.props.onClick(this.props.row, this.props.col);
     }
 }

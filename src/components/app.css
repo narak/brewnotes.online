@@ -14,18 +14,17 @@
 .header {
     z-index: 1;
     color: color3;
-    padding: 10px 15px;
+    padding:5px 0;
 }
 
 .triangle {
-    position: absolute;
+    position: fixed;
     z-index: 0;
     background: triangles;
     border-radius: 10px;
 }
 
 .userTriangle {
-    position: fixed;
     width: 150px;
     height: 150px;
     transform: rotate(54deg);
@@ -38,5 +37,10 @@
     height: 420px;
     transform: rotate(54deg);
     top: 140px;
-    left: -230px;
+    left: -270px;
+}
+
+.content {
+    position: relative;
+    padding: 10px 15px;
 }

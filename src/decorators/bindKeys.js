@@ -76,7 +76,9 @@ class ManageKeyBindings {
     }
 
     pushStack(e) {
-        // console.log(e.keyCode);
+        if (window.logKeys) {
+            console.log(e.keyCode);
+        }
 
         if (
             !e.defaultPrevented &&
