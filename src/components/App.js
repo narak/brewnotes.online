@@ -3,7 +3,7 @@ import styles from './app.css';
 import React, { Fragment } from 'react';
 import cns from 'classnames';
 
-import Notes from './containers/Notes';
+import Notes from 'components/containers/Notes';
 
 class App extends React.PureComponent {
     render() {

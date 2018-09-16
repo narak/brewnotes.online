@@ -91,6 +91,10 @@ class ManageKeyBindings {
         //This is done to avoid adding the same key code again and again on press.
         if (this._keyStack.indexOf(e.keyCode) === -1) {
             this._keyStack.push(e.keyCode);
+
+            if (this._keyTrie.getIn(this._keyStack)) {
+                e.preventDefault();
+            }
         }
     }
 
