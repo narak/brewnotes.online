@@ -7,6 +7,7 @@ import uuid from 'utils/uuid';
 import bindKeys from 'decorators/bindKeys';
 
 import List from 'components/notes/List';
+import Details from 'components/notes/Details';
 
 const localNotes = localStorage.getItem('notes');
 
@@ -19,25 +20,62 @@ export default class Notes extends React.PureComponent {
         this.state = {
             notes,
             selectedNote: notes.get(0),
+            isShowingDetails: false,
         };
     }
+
+    componentDidMount() {
+        this.props.keybind.register(this.getKeyBinds());
+    }
+
+    componentWillUnmount() {
+        this.props.keybind.unregister();
+    }
+
+    getKeyBinds = () => {
+        return [
+            // enter
+            { keys: [13], callback: this.onOpenDetails },
+            // esc
+            { keys: [27], callback: this.onCloseDetails },
+            // backspace
+            { keys: [8], callback: this.onDeleteNote },
+            // backspace, delete
+            { keys: [46], callback: this.onDeleteNote },
+        ];
+    };
 
     componentDidUpdate(prevProps, prevState) {
         localStorage.setItem('notes', JSON.stringify(this.state.notes));
     }
 
     render() {
-        const { notes, selectedNote } = this.state;
+        const { notes, selectedNote, isShowingDetails } = this.state;
 
         return (
             <Fragment>
-                <button type="button" onClick={this.onAddNote}>
-                    Add Note
-                </button>
-                <List notes={notes} selectedNote={selectedNote} onSelect={this.onSelect} />
+                <div>
+                    <button type="button" onClick={this.onAddNote}>
+                        Add Note
+                    </button>
+                </div>
+                <List
+                    notes={notes}
+                    selectedNote={selectedNote}
+                    onSelect={this.onSelect}
+                    disableKeys={isShowingDetails}
+                />
+
+                {isShowingDetails ? (
+                    <Details note={selectedNote} onCloseDetails={this.onCloseDetails} />
+                ) : null}
             </Fragment>
         );
     }
+
+    onOpenDetails = () => this.setState({ isShowingDetails: true });
+
+    onCloseDetails = () => this.setState({ isShowingDetails: false });
 
     onSelect = note => this.setState({ selectedNote: note });
 

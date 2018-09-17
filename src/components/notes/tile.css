@@ -1,19 +1,19 @@
 :import('../../colors.css') {
-    color3: color3;
-    color5: color5;
+    blue: blue;
+    lightblue: lightblue;
+    darkpink: darkpink;
 }
 
 .note {
-    position: absolute;
-    border: 1px solid color3;
     display: inline-block;
+    border: 2px solid darkpink;
+    border-radius: 5px;
+    background: lightblue;
+
     padding: 2px 6px;
     font-size: 0.8rem;
-    border-radius: 2px;
-    margin: 0 5px 5px 0;
-    width: 150px;
 }
 
 .isSelected {
-    border: 2px solid color5;
+    border-color: blue;
 }

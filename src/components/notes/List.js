@@ -8,7 +8,7 @@ import { Grid } from 'constants/GridConstants';
 import bindKeys from 'decorators/bindKeys';
 import Tile from './Tile';
 
-@bindKeys('notes')
+@bindKeys('list')
 export default class List extends React.PureComponent {
     componentDidMount() {
         this.props.keybind.register(this.getKeyBinds());
@@ -20,18 +20,22 @@ export default class List extends React.PureComponent {
 
     getKeyBinds = () => {
         return [
-            // Left: H
+            // Left arrow
             { keys: [37], callback: this.onLeft },
-            // Up: K
+            // Up arrow
             { keys: [38], callback: this.onUp },
-            // Right: L
+            // Right arrow
             { keys: [39], callback: this.onRight },
-            // Down: J
+            // Down arrow
             { keys: [40], callback: this.onDown },
-            // backspace
-            { keys: [8], callback: this.onDeleteNote },
-            // backspace, delete
-            { keys: [46], callback: this.onDeleteNote },
+            // Left: H
+            { keys: [72], callback: this.onLeft },
+            // Up: K
+            { keys: [75], callback: this.onUp },
+            // Right: L
+            { keys: [76], callback: this.onRight },
+            // Down: J
+            { keys: [74], callback: this.onDown },
         ];
     };
 
@@ -40,17 +44,21 @@ export default class List extends React.PureComponent {
 
         return (
             <div className={styles.list}>
-                {notes.map((note, i) => {
-                    return (
-                        <Tile
-                            key={i}
-                            index={i}
-                            note={note}
-                            isSelected={selectedNote && selectedNote.get('id') === note.get('id')}
-                            onClick={this.onSelectRowCol}
-                        />
-                    );
-                })}
+                <div className={styles.grid}>
+                    {notes.map((note, i) => {
+                        return (
+                            <Tile
+                                key={i}
+                                index={i}
+                                note={note}
+                                isSelected={
+                                    selectedNote && selectedNote.get('id') === note.get('id')
+                                }
+                                onClick={this.props.onSelect}
+                            />
+                        );
+                    })}
+                </div>
             </div>
         );
     }
@@ -64,10 +72,12 @@ export default class List extends React.PureComponent {
     };
 
     gridMoveWrapper = move => () => {
-        const { row, col } = this.getIndexRowCol();
-        const { row: newRow, col: newCol } = move(row, col);
-        const newIndex = getIndex(newRow, newCol);
-        this.props.onSelect(this.props.notes.get(newIndex));
+        if (!this.props.disableKeys) {
+            const { row, col } = this.getIndexRowCol();
+            const { row: newRow, col: newCol } = move(row, col);
+            const newIndex = getIndex(newRow, newCol);
+            this.props.onSelect(this.props.notes.get(newIndex));
+        }
     };
 
     onRight = this.gridMoveWrapper((row, col) => {
@@ -115,9 +125,5 @@ export default class List extends React.PureComponent {
     hasValidIndex = (row, col) => {
         const index = getIndex(row, col);
         return this.props.notes.size > index;
-    };
-
-    onSelectRowCol = (row, col) => {
-        this.setState({ row, col });
     };
 }

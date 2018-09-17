@@ -4,9 +4,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import cns from 'classnames';
 
-import { getRowCol } from 'helpers/GridHelpers';
-import { Grid } from 'constants/GridConstants';
-
 export default class Note extends React.PureComponent {
     componentDidUpdate(prevProps, prevState) {
         if (!prevProps.isSelected && this.props.isSelected) {
@@ -16,7 +13,7 @@ export default class Note extends React.PureComponent {
     }
 
     render() {
-        const { note, isSelected, index } = this.props;
+        const { note, isSelected } = this.props;
 
         const attrs = [];
         note.forEach((val, key) => {
@@ -31,12 +28,8 @@ export default class Note extends React.PureComponent {
 
         const cls = cns(styles.note, { [styles.isSelected]: isSelected });
 
-        const { row, col } = getRowCol(index);
-        const left = col * (Grid.WIDTH + Grid.PADDING_RIGHT) + 'px';
-        const top = row * (Grid.HEIGHT + Grid.PADDING_BOTTOM) + 'px';
-
         return (
-            <div className={cls} style={{ left, top }} onClick={this.onClick}>
+            <div className={cls} onClick={this.onClick}>
                 <div>{note.get('name')}</div>
                 {attrs}
             </div>
@@ -44,6 +37,6 @@ export default class Note extends React.PureComponent {
     }
 
     onClick = () => {
-        this.props.onClick(this.props.row, this.props.col);
+        this.props.onClick(this.props.note);
     };
 }

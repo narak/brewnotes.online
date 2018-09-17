@@ -1,6 +1,6 @@
 :import('../colors.css') {
-    triangles: triangles;
-    color3: color3;
+    magenta: magenta;
+    black: black;
 }
 
 .logo {
@@ -13,14 +13,14 @@
 
 .header {
     z-index: 1;
-    color: color3;
+    color: black;
     padding:5px 0;
 }
 
 .triangle {
     position: fixed;
     z-index: 0;
-    background: triangles;
+    background: magenta;
     border-radius: 10px;
 }
 
