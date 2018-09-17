@@ -63,7 +63,7 @@ class ManageKeyBindings {
         if (listener) {
             let callback = listener.callback;
             if (typeof callback === 'function') {
-                callback(this._keyStack);
+                callback();
             }
         } else {
             this._keyStack = [];
@@ -117,8 +117,8 @@ export default function bindKeys(comp) {
         const displayName =
             DecoratedComponent.displayName || DecoratedComponent.name || 'Component';
 
-        return class LayeredComponent extends React.PureComponent {
-            static displayName = `layeredComponent(${displayName})`;
+        return class BindKeys extends React.PureComponent {
+            static displayName = `BindKeys(${displayName})`;
 
             static contextTypes = Object.assign({}, DecoratedComponent.contextTypes);
 

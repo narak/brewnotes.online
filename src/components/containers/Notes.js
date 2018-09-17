@@ -19,8 +19,8 @@ export default class Notes extends React.PureComponent {
         const notes = localNotes ? Immutable.fromJS(JSON.parse(localNotes)) : Immutable.List();
         this.state = {
             notes,
-            selectedNote: notes.get(0),
-            isShowingDetails: false,
+            selectedIndex: notes.size ? 0 : undefined,
+            isDetailsFocused: false,
         };
     }
 
@@ -35,9 +35,9 @@ export default class Notes extends React.PureComponent {
     getKeyBinds = () => {
         return [
             // enter
-            { keys: [13], callback: this.onOpenDetails },
+            { keys: [13], callback: this.onFocusDetails },
             // esc
-            { keys: [27], callback: this.onCloseDetails },
+            { keys: [27], callback: this.onBlurDetails },
             // backspace
             { keys: [8], callback: this.onDeleteNote },
             // backspace, delete
@@ -50,7 +50,12 @@ export default class Notes extends React.PureComponent {
     }
 
     render() {
-        const { notes, selectedNote, isShowingDetails } = this.state;
+        const { notes, selectedIndex, isDetailsFocused } = this.state;
+
+        let selectedNote;
+        if (selectedIndex !== undefined) {
+            selectedNote = notes.get(selectedIndex);
+        }
 
         return (
             <Fragment>
@@ -63,30 +68,51 @@ export default class Notes extends React.PureComponent {
                     notes={notes}
                     selectedNote={selectedNote}
                     onSelect={this.onSelect}
-                    disableKeys={isShowingDetails}
+                    disableKeys={selectedNote && isDetailsFocused}
                 />
 
-                {isShowingDetails ? (
-                    <Details note={selectedNote} onCloseDetails={this.onCloseDetails} />
+                {selectedNote ? (
+                    <Details
+                        note={selectedNote}
+                        onBlurDetails={this.onBlurDetails}
+                        onUpdate={this.onUpdate}
+                    />
                 ) : null}
             </Fragment>
         );
     }
 
-    onOpenDetails = () => this.setState({ isShowingDetails: true });
+    onFocusDetails = () => this.setState({ isDetailsFocused: true });
 
-    onCloseDetails = () => this.setState({ isShowingDetails: false });
+    onBlurDetails = () => this.setState({ isDetailsFocused: false });
 
-    onSelect = note => this.setState({ selectedNote: note });
+    onSelect = note => {
+        this.setState({
+            selectedIndex: this.state.notes.findIndex(_note => _note.get('id') === note.get('id')),
+        });
+    };
 
-    onDeleteNote = (note = this.state.selectedNote) => {
+    onUpdate = note => {
+        const { notes } = this.state;
+        const index = this.state.notes.findIndex(_note => _note.get('id') === note.get('id'));
+        this.setState({ notes: notes.set(index, note) });
+    };
+
+    onDeleteNote = note => {
+        if (!note) {
+            note = this.state.notes.get(this.state.selectedIndex);
+        }
+
         const notes = this.state.notes.filter(_note => _note.get('id') !== note.get('id'));
         this.setState({ notes });
     };
 
     onAddNote = () => {
+        const { notes } = this.state;
+        const indexBeforeAdd = notes.size;
         this.setState({
-            notes: this.state.notes.push(Immutable.Map({ id: uuid(true), name: 'Untitled' })),
+            notes: notes.push(Immutable.Map({ id: uuid(true) })),
+            selectedIndex: indexBeforeAdd,
         });
     };
 }

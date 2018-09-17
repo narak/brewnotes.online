@@ -1,0 +1,12 @@
+:import('../../../colors.css') {
+    blue: blue;
+}
+
+.input {
+    background: none;
+    border: none;
+    outline: none;
+}
+.input:focus {
+    border-bottom: 1px solid blue;
+}

@@ -8,7 +8,7 @@ export default class Note extends React.PureComponent {
     componentDidUpdate(prevProps, prevState) {
         if (!prevProps.isSelected && this.props.isSelected) {
             const $el = ReactDOM.findDOMNode(this);
-            $el.scrollIntoView({ block: 'start', behavior: 'smooth' });
+            $el.scrollIntoViewIfNeeded();
         }
     }
 
@@ -17,7 +17,7 @@ export default class Note extends React.PureComponent {
 
         const attrs = [];
         note.forEach((val, key) => {
-            if (key === 'name') return;
+            if (key === 'name' || key === 'id') return;
 
             attrs.push(
                 <div key={key}>
@@ -30,7 +30,7 @@ export default class Note extends React.PureComponent {
 
         return (
             <div className={cls} onClick={this.onClick}>
-                <div>{note.get('name')}</div>
+                <div>{note.get('name') || 'Unnamed Note'}</div>
                 {attrs}
             </div>
         );
