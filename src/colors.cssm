@@ -1,0 +1,11 @@
+:export {
+    black: #360625;
+    magenta: #bbaac7;
+    darkpink: #862662;
+    white: #fff7f3;
+    purple: #6785b7;
+    blue: #61a2ee;
+    lightblue: #b1daf2;
+    orange: #ca8e71;
+    red: #be2349;
+}

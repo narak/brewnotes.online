@@ -1,8 +1,14 @@
-import styles from './details.css';
+import styles from './details.cssm';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import TextInput from 'components/common/form/TextInput';
+import objectToKVArray from 'utils/objectToKVArray';
+
+import { Styles } from 'constants/BeerConstants';
+
+import { TextInput, SelectInput } from 'components/common/form';
+
+const BeerStyleOptions = objectToKVArray(Styles, 'value', 'label');
 
 export default class Details extends React.PureComponent {
     componentDidUpdate({ note: prevNote }) {
@@ -26,6 +32,14 @@ export default class Details extends React.PureComponent {
                     value={note.get('name') || ''}
                     onChange={this.onChange}
                     className={styles.title}
+                />
+                <SelectInput
+                    name="type"
+                    placeholder="Select type"
+                    value={note.get('type')}
+                    isSearchable={true}
+                    options={BeerStyleOptions}
+                    onChange={this.onChange}
                 />
             </div>
         );

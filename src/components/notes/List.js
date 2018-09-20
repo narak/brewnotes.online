@@ -1,4 +1,4 @@
-import styles from './list.css';
+import styles from './list.cssm';
 
 import React from 'react';
 import { getRowCol, getIndex } from 'helpers/GridHelpers';

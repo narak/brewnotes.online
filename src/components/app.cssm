@@ -1,4 +1,4 @@
-:import('../colors.css') {
+:import('../colors.cssm') {
     white: white;
     magenta: magenta;
     black: black;
