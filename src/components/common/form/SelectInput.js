@@ -8,6 +8,10 @@ export default class SelectInput extends React.Component {
         return <Select {...this.props} onChange={this.onChange} />;
     }
     onChange = selectedOption => {
-        this.props.onChange(this.props.name, selectedOption.value, selectedOption);
+        this.props.onChange(
+            this.props.name,
+            selectedOption && selectedOption.value,
+            selectedOption
+        );
     };
 }

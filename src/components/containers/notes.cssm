@@ -1,6 +1,6 @@
 .actions {
-    position: absolute;
+    position: fixed;
     left: 50%;
-    top: 16px;
-    transform: translateX(-50%);
+    top: 48px;
+    margin-left: 5px;
 }

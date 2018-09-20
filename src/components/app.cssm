@@ -1,6 +1,5 @@
 :import('../colors.cssm') {
     white: white;
-    magenta: magenta;
     black: black;
 }
 
@@ -9,45 +8,21 @@ body {
     height: 100%;
     width: 100%;
     background: white;
+    color: black;
 }
+
 .logo {
+    position: fixed;
     margin: 0 8px 0 0;
     font-family: 'Pattaya', cursive;
-    position: relative;
     display: inline-block;
-    font-size: 1.2rem;
-}
-
-.header {
-    z-index: 1;
-    color: black;
-    padding: 5px 0;
-}
-
-.triangle {
-    position: fixed;
-    z-index: 0;
-    background: magenta;
-    border-radius: 10px;
-}
-
-.userTriangle {
-    width: 150px;
-    height: 150px;
-    transform: rotate(54deg);
-    top: -10px;
-    right: -123px;
-}
-
-.pageTriangle {
-    width: 420px;
-    height: 420px;
-    transform: rotate(54deg);
-    top: 140px;
-    left: -270px;
+    font-size: 1.8rem;
+    left: 50%;
+    margin-left: -130px;
+    top: 40px;
 }
 
 .content {
     position: relative;
-    padding: 10px 15px;
+    padding: 120px 70px 20px;
 }

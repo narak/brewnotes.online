@@ -4,6 +4,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import cns from 'classnames';
 
+import { Styles } from 'constants/BeerConstants';
+
+const Displayed = { name: true, id: 'true', type: true };
+
 export default class Note extends React.PureComponent {
     componentDidUpdate(prevProps, prevState) {
         if (!prevProps.isSelected && this.props.isSelected) {
@@ -14,10 +18,11 @@ export default class Note extends React.PureComponent {
 
     render() {
         const { note, isSelected } = this.props;
+        const type = note.get('type');
 
         const attrs = [];
         note.forEach((val, key) => {
-            if (key === 'name' || key === 'id') return;
+            if (Displayed[key]) return;
 
             attrs.push(
                 <div key={key}>
@@ -30,7 +35,8 @@ export default class Note extends React.PureComponent {
 
         return (
             <div className={cls} onClick={this.onClick}>
-                <div>{note.get('name') || 'Unnamed Note'}</div>
+                {type ? <div className={styles.style}>{Styles[type] || type}</div> : null}
+                <b className={styles.name}>{note.get('name') || 'Unnamed Note'}</b>
                 {attrs}
             </div>
         );
