@@ -1,4 +1,4 @@
-// import styles from './notes.cssm';
+import styles from './notes.cssm';
 
 import React, { Fragment } from 'react';
 import Immutable from 'immutable';
@@ -8,6 +8,10 @@ import bindKeys from 'decorators/bindKeys';
 
 import List from 'components/notes/List';
 import Details from 'components/notes/Details';
+import Button from 'components/common/Button';
+import Icon from 'components/common/Icon';
+
+import noteAddSvg from 'svgs/note_add.svg';
 
 const localNotes = localStorage.getItem('notes');
 
@@ -59,10 +63,10 @@ export default class Notes extends React.PureComponent {
 
         return (
             <Fragment>
-                <div>
-                    <button type="button" onClick={this.onAddNote}>
-                        Add Note
-                    </button>
+                <div className={styles.actions}>
+                    <Button type="icon" onClick={this.onAddNote}>
+                        <Icon icon={noteAddSvg} />
+                    </Button>
                 </div>
                 <List
                     notes={notes}
